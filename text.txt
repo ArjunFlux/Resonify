@@ -1,0 +1,80 @@
+      <div className="absolute -mt-100 ml-105 text-white">
+        <p className="font-bold text-2xl">Popular Playlist</p>
+        <div className="flex justify-between items-center gap-15">
+          <Link
+            to="/playlist"
+            state={{
+              name: "PlayList 1",
+              songs: songs.slice(1, 20),
+              PlaylistType: "Favaroite",
+            }}
+          >
+            <div className="mt-5 p-5 bg-linear-160 from-orange-600 to-red-900 rounded-2xl cursor-pointer">
+              <img
+                src="/61ygTdD3mDL._SL1280_.jpg"
+                alt="Playlist 1 "
+                className="h-40 w-30 rounded-[50%] hover:scale-105"
+              />
+              <p className="font-bold text-center">Golden Days</p>
+              <p className="text-center">Favaroite</p>
+            </div>
+          </Link>
+          <Link
+            to="/playlist"
+            state={{
+              name: "PlayList 2",
+              songs: songs.slice(21, 40),
+              PlaylistType: "Favaroite",
+            }}
+          >
+            <div className="mt-5 p-5 bg-linear-140 from-blue-500 to-violet-800 rounded-2xl cursor-pointer">
+              <img
+                src="/71BKjYZejTL._SL1232_.jpg"
+                alt="Playlist 2"
+                className="h-40 w-30 rounded-[50%] hover:scale-105"
+              />
+              <p className="font-bold text-center">Fading Horizan</p>
+              <p className="text-center">TimePass</p>
+            </div>
+          </Link>
+          <Link
+            to="/playlist"
+            state={{
+              name: "PlayList 3",
+              songs: songs.slice(41, 60),
+              PlaylistType: "Favaroite",
+            }}
+          >
+            <div className="mt-5 p-5 bg-linear-160 from-slate-700 to-blue-800 rounded-2xl cursor-pointer">
+              <img
+                src="/download (1).jpg"
+                alt="Playlist 1 "
+                className="h-40 w-30 rounded-[50%] hover:scale-105"
+              />
+              <p className="font-bold text-center">Waves Of Time</p>
+              <p className="text-center">Favaroite</p>
+            </div>
+          </Link>
+          <Link
+            to="/playlist"
+            state={{
+              name: "PlayList 4",
+              songs: songs.slice(61, 80),
+              PlaylistType: "Favaroite",
+            }}
+          >
+            <div className="mt-5 p-5 bg-linear-160 from-green-700 to-cyan-500 rounded-2xl cursor-pointer">
+              <img
+                src="/One-Direction.jpg"
+                alt="Playlist 1 "
+                className="h-40 w-30 rounded-[50%] hover:scale-105"
+              />
+              <p className="font-bold text-center">Electric Dreams</p>
+              <p className="text-center">Favaroite</p>
+            </div>
+          </Link>
+          <div className="mt-5 p-5 hover:bg-amber-50 hover:rounded-2xl hover:text-black cursor-pointer rounded-2xl">
+            <RiPlayListAddLine size={40} />
+          </div>
+        </div>
+      </div>

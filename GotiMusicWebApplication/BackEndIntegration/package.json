@@ -1,0 +1,25 @@
+{
+  "name": "gotimusicwebapplication",
+  "version": "1.0.0",
+  "description": "This is the personalized music Web Application",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "author": "Parth Upadhyay",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.13.5",
+    "bcrypt": "^6.0.0",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.6",
+    "deep-email-validator": "^0.1.21",
+    "express": "^5.2.1",
+    "ioredis": "^5.9.2",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.1.5",
+    "nodemailer": "^7.0.13",
+    "nodemon": "^3.1.11",
+    "redis": "^5.10.0"
+  }
+}
