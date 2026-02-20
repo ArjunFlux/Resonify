@@ -4,7 +4,7 @@ const router = express.Router();
 router.get("/show", async (req, res) => {
   const Song = req.query.q;
   try{
-    const responce = await fetch(`https://saavn.sumit.co/api/search/songs?query=${Song}&limit=20&page=1`);
+    const responce = await fetch(`https://saavn.sumit.co/api/search/songs?query=${Song}&limit=16&page=1`);
     if(!responce){
       return res.status(400).json({status:`Error in getting the response from the Subjected URL`})
     }
@@ -56,5 +56,19 @@ router.get('/play', async (req,res)=>{
     console.log("Error in the try block :",err)
     return res.status(500).json({status:`Error in the try block`})
   }
+})
+router.get('/language',async (req,res)=>{
+  const languageType = req.query.q;
+  console.log(languageType);
+  const response = await fetch(`https://saavn.sumit.co/api/search/songs?query=${languageType}&limit=16&page=1`)
+  if(!response){
+    return res.status(500).json({status:`Error in getting the response back from the api`})
+  }
+  console.log(response);
+  const responceData = await response.json();
+  if(!responceData){
+    return res.status(500).json({status:`Error in getting the json response from the api`});
+  }
+  return res.status(200).json(responceData);
 })
 module.exports = router;
