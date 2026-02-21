@@ -12,6 +12,7 @@ function AddYourMusic() {
     <div>
       <div className="bg-linear-110 from-black flex to-slate-900 h-screen text-white overflow-y-hidden">
         {/* This is the sidebar  */}
+      <div>
         <div className="h-[87vh] w-[30vh] mx-10 rounded-2xl my-5 bg-gray-900">
           <div className="flex items-center">
             <img
@@ -22,34 +23,40 @@ function AddYourMusic() {
             <p className="text-2xl font-bold text-orange-500">Resonify</p>
           </div>
           <div className="flex-col items-center mt-8 ml-10 text-[18px]">
-            <Link to={`/mainpage`}>
-              <div className="flex items-center  mt-10 gap-3 cursor-pointer">
-                <RiHomeLine size={32} />
+            <div className="flex items-center  mt-10 gap-3 cursor-pointer">
+              <RiHomeLine size={32} />
+              <Link to={`/mainpage`}>
                 <p>Home</p>
-              </div>
-            </Link>
-            <Link to={`/artist`}>
-              <div className="flex items-center  mt-10 gap-3 cursor-pointer">
-                <BsPerson size={32} />
+              </Link>
+            </div>
+            <div className="flex items-center  mt-10 gap-3 cursor-pointer">
+              <BsPerson size={32} />
+              <Link to={`/artist`}>
                 <p>Artist's</p>
-              </div>
-            </Link>
-            <Link to={`/addyourmuisc`}>
-              <div className="flex items-center  mt-10 gap-3 cursor-pointer">
-                <TbMusicDollar size={32} />
+              </Link>
+            </div>
+            <div className="flex items-center  mt-10 gap-3 cursor-pointer">
+              <TbMusicDollar size={32} />
+              <Link to={`/addyourmuisc`}>
                 <p>Add Your Music</p>
-              </div>
-            </Link>
+              </Link>
+            </div>
             <div className="flex items-center  mt-10 gap-3 cursor-pointer">
               <MdOutlineExplore size={32} />
-              <p>Explore</p>
+              <Link to={`/explore`}>
+                <p>Explore</p>
+              </Link>
             </div>
-            <div className="relative flex items-center mt-10 gap-3 cursor-pointer">
+            <div
+              className="relative flex items-center mt-10 gap-3 cursor-pointer"
+              onClick={() => setisOpen(!isOpen)}
+            >
               <RiPlayListLine size={32} className="cursor-pointer" />
               <p>Chat With Friends</p>
             </div>
           </div>
         </div>
+      </div>
         {/* This is the main content of this page */}
         <div>
           <div className="leading-7">

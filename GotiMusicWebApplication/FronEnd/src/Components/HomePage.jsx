@@ -38,6 +38,7 @@ function HomePage() {
   const [SongToBePlayed, setSongToBePlayed] = useState(""); // this is the react variable for the song to be played
   const [ShowAudioTag, setShowAudioTag] = useState(false); // This is the react variable for the display of the audio tag
   const [SongIdMatch, setSongIdMatch] = useState(null);
+  // const [SongGenrea , setSongGenrea] = useState([]);
   useEffect(() => {
     const Token = localStorage.getItem("token");
     if (Token) {
@@ -93,17 +94,10 @@ function HomePage() {
       console.log("Error in fetching the data");
     }
   }
-  async function handleOnClickToPlaySong(SongId) {
-    try {
-      const res = await fetch(`/api/play?q=${SongId}`);
-      const SongPLay = await res.json();
-      console.log("The details for the song : ", SongPLay);
-      setSongToBePlayed(SongPLay.downloadUrl[1].url);
+  async function handleOnClickToPlaySong(Song) {
+      setSongToBePlayed(Song.downloadUrl[2].url);
       setShowAudioTag((prev) => !prev);
-      setSongIdMatch(SongId);
-    } catch (err) {
-      console.log("Error incurrented : ", err);
-    }
+      setSongIdMatch(Song.id);
   }
   function handleClick() {
     setShowAudioTag((prev) => !prev);
@@ -139,10 +133,12 @@ function HomePage() {
                   <p>Add Your Music</p>
                 </div>
               </Link>
-              <div className="flex items-center  mt-10 gap-3 cursor-pointer">
-                <MdOutlineExplore size={32} />
-                <p>Explore</p>
-              </div>
+              <Link to={`/explore`}>
+                <div className="flex items-center  mt-10 gap-3 cursor-pointer">
+                  <MdOutlineExplore size={32} />
+                  <p>Explore</p>
+                </div>
+              </Link>
               <div className="relative flex items-center mt-10 gap-3 cursor-pointer">
                 <RiPlayListLine size={32} className="cursor-pointer" />
                 <p>Chat With Friends</p>
@@ -253,7 +249,7 @@ function HomePage() {
                           size={75}
                           className="text-white ml-5 -mt-20 cursor-pointer"
                           onClick={() => {
-                            handleOnClickToPlaySong(song.id);
+                            handleOnClickToPlaySong(song);
                           }}
                         />
                       </div>

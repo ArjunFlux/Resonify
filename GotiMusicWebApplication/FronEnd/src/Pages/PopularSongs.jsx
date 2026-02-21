@@ -23,31 +23,24 @@ function PopularSongs() {
   const [ShowAudioTag, setShowAudioTag] = useState(false); // This is the react variable for the display of the audio tag
   const [SongIdMatch, setSongIdMatch] = useState(null);
   const [SongForDisplay, setSongsForDisplay] = useState([]);
-  async function handleOnClickToPlaySong(SongId) {
-    try {
-      const res = await fetch(`/api/play?q=${SongId}`);
-      const SongPLay = await res.json();
-      console.log("The details for the song : ", SongPLay);
-      setSongsForDisplay(SongPLay);
-      setSongToBePlayed(SongPLay.downloadUrl[1].url);
+  async function handleOnClickToPlaySong(Song) {
+      setSongsForDisplay(Song);
+      setSongToBePlayed(Song.downloadUrl[1].url);
       setShowAudioTag((prev) => !prev);
-      setSongIdMatch(SongId);
-    } catch (err) {
-      console.log("Error incurrented : ", err);
-    }
+      setSongIdMatch(Song.id);
   }
   function handleClick() {
     setShowAudioTag((prev) => !prev);
   }
   return (
-    <div className="flex bg-linear-110 from-black to-slate-900 h-[180vh] text-white">
+    <div className="flex bg-linear-110 from-black to-slate-900 h-[200vh] text-white">
       <div>
         <div className="h-[87vh] w-[30vh] mx-10 rounded-2xl my-5 bg-gray-900">
           <div className="flex items-center">
             <img
               src="/image.png"
               alt="Logo of the Website"
-              className="rounded-full h-12 bg-orange-500 m-5"
+              className="rounded-full h-13 bg-orange-500 m-5"
             />
             <p className="text-2xl font-bold text-orange-500">Resonify</p>
           </div>
@@ -60,15 +53,21 @@ function PopularSongs() {
             </div>
             <div className="flex items-center  mt-10 gap-3 cursor-pointer">
               <BsPerson size={32} />
-              <p>Artist's</p>
+              <Link to={`/artist`}>
+                <p>Artist's</p>
+              </Link>
             </div>
             <div className="flex items-center  mt-10 gap-3 cursor-pointer">
               <TbMusicDollar size={32} />
-              <p>Add Your Music</p>
+              <Link to={`/addyourmuisc`}>
+                <p>Add Your Music</p>
+              </Link>
             </div>
             <div className="flex items-center  mt-10 gap-3 cursor-pointer">
               <MdOutlineExplore size={32} />
-              <p>Explore</p>
+              <Link to={`/explore`}>
+                <p>Explore</p>
+              </Link>
             </div>
             <div
               className="relative flex items-center mt-10 gap-3 cursor-pointer"
@@ -128,7 +127,7 @@ function PopularSongs() {
                     <FaRegPlayCircle
                       className="absolute -mt-10 ml-4 opacity-0 group-hover:opacity-100 cursor-pointer"
                       size={25}
-                      onClick={() => handleOnClickToPlaySong(song.id)}
+                      onClick={() => handleOnClickToPlaySong(song)}
                     />
                   </td>
                   <td className="px-4 pl-30 py-2">

@@ -35,28 +35,6 @@ router.get("/showMore", async (req, res) => {
   }
 })
 // this is to play music
-router.get('/play', async (req,res)=>{
-  const SongId = req.query.q; // this q is the qureyed URL
-  console.log("This is the requested Song id : ",SongId);
-  try{
-    const responce = await fetch("https://saavn.sumit.co/api/search/songs?query=Bollywood&limit=40&page=1")
-    if(!responce){
-      console.log("Error in fetching the particular song details")
-      return res.status(500).json({status:`Error while fetching theh data to play the song `})
-    }
-    const responceData = await responce.json();
-    const MatchSongDetails = responceData.data.results.find(items => String(items.id).trim() === String(SongId).trim());
-    if(!MatchSongDetails){
-      console.log("Invalid Song id for the search and couldn't fetch the details");
-      return res.status(400).json({status:`Couldn't find the song details due to invalid song details`})
-    }
-    console.log
-    return  res.status(200).json(MatchSongDetails);
-  }catch(err){
-    console.log("Error in the try block :",err)
-    return res.status(500).json({status:`Error in the try block`})
-  }
-})
 router.get('/language',async (req,res)=>{
   const languageType = req.query.q;
   console.log(languageType);
@@ -70,5 +48,20 @@ router.get('/language',async (req,res)=>{
     return res.status(500).json({status:`Error in getting the json response from the api`});
   }
   return res.status(200).json(responceData);
+})
+router.get('/song',async (req,res)=>{
+  const SongName = req.query.q;
+  console.log("Artist Name is : ",SongName);
+  try{
+    const ArtistResponse = await fetch(`https://saavn.sumit.co/api/search/songs?query=${SongName}`);
+    const ArtistResponseData = await ArtistResponse.json();
+    if(!ArtistResponseData){
+      return res.status(503).json({status:`Error Occured : `})
+    }
+    console.log("Artist Details are : ",ArtistResponseData);
+    return res.status(200).json(ArtistResponseData);
+  }catch(err){
+    console.log("Error while fetching the data : ",err);
+  }
 })
 module.exports = router;

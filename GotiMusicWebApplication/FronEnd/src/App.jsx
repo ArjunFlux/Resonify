@@ -11,6 +11,7 @@ import PopularSongs from "./Pages/PopularSongs";
 import ProtectedRoute from "./Components/CheckForAuth";
 import ArtistPage from "./Components/ArtistPage";
 import AddYourMusic from "./Components/AddYourMusic";
+import ExplorePage from "./Components/ExplorePage";
 function App() {
   return (
     <div>
@@ -36,6 +37,7 @@ function App() {
           <Route path="/playlist" element={<PopularSongs />} />
           <Route path="/artist" element={<ArtistPage/>}/>
           <Route path="/addyourmuisc" element={<AddYourMusic/>}/>
+          <Route path="/explore" element={<ExplorePage/>}/>
         </Route>
       </Routes>
     </div>
