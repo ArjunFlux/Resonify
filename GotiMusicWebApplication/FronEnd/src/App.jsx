@@ -12,6 +12,7 @@ import ProtectedRoute from "./Components/CheckForAuth";
 import ArtistPage from "./Components/ArtistPage";
 import AddYourMusic from "./Components/AddYourMusic";
 import ExplorePage from "./Components/ExplorePage";
+import PlaylistSongs from "./Pages/PlaylistSongs";
 function App() {
   return (
     <div>
@@ -38,6 +39,7 @@ function App() {
           <Route path="/artist" element={<ArtistPage/>}/>
           <Route path="/addyourmuisc" element={<AddYourMusic/>}/>
           <Route path="/explore" element={<ExplorePage/>}/>
+          <Route path="/createplaylist" element={<PlaylistSongs/>}/>
         </Route>
       </Routes>
     </div>

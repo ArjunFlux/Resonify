@@ -64,4 +64,16 @@ router.get('/song',async (req,res)=>{
     console.log("Error while fetching the data : ",err);
   }
 })
+router.get('/hollywood',async (req,res)=>{
+try{
+    const TypeResponse = await fetch(`https://saavn.sumit.co/api/search/songs?query=Hollywood&limit=40&page=1`);
+    const TypeResponseData = await TypeResponse.json();
+    if(!TypeResponseData){
+      return res.status(503).json({status:`Error Occured : `})
+    }
+    return res.status(200).json(TypeResponseData);
+  }catch(err){
+    console.log("Error while fetching the data : ",err);
+  }
+})
 module.exports = router;
