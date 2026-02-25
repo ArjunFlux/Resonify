@@ -76,4 +76,12 @@ try{
     console.log("Error while fetching the data : ",err);
   }
 })
+// this is for the lyrics of the reuqired songs 
+// router.get('/lyrics',async (req,res)=>{
+//   const SongLyricsName = req.query.q;
+//   console.log("The request lyrics of the song is : ",SongLyricsName);
+//   try{
+//     const lyricsResponse = await fetch('')
+//   }
+// })
 module.exports = router;
