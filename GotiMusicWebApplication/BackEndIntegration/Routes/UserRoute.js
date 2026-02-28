@@ -7,7 +7,7 @@ const handleUpgradeUserRole = require('../Controllers/HandleUpgradeRole')
 const handleEmailSend = require('../Controllers/EmailSend')
 const handleOtpVerificationOfTheUser = require('../Controllers/HandleOtpVerificationOfTheUser')
 const CheckTheEmailbeforeTheOtpGeneration = require('../Middleware/CheckTheEmailBeforeTheOtpGeneration')
-const handleMusicModelCreation = require('../Controllers/HandleMusicModel')
+const handleMusicPlaylistCreation = require('../Controllers/HandleMusicModel')
 const checkforauthentication = require('../Middleware/CheckForAuthentication')
 // Route for the connection between the Server and Database
 router.post('/create',handleCreateUser) // signup
@@ -16,5 +16,5 @@ router.post('/emailverification',CheckTheEmailbeforeTheOtpGeneration,handleEmail
 router.post('/verifiy',handleOtpVerificationOfTheUser)
 // This is a protected routes 
 router.post('/upgrade',checkforauthentication,handleUpgradeUserRole)
-router.post('/createmusic',handleMusicModelCreation)
+router.post('/createmusic',checkforauthentication,handleMusicPlaylistCreation)
 module.exports = router;

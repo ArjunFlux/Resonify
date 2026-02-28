@@ -1,20 +1,16 @@
 const mongoose = require('mongoose')
 // the schema for the music model
 const MusicSchema = mongoose.Schema({
-    NameOfSong : {
+    NameOfPlaylist : {
         type:String,
         required:true,
     },
-    ArtistName:{
+    Author:{
         type:String,
         required:true,
     },
-    UserName:{
+    Discription:{
         type:String,
-        required:true,
-    },
-    Duration:{
-        type:Number,
         required:true,
     }
 },{timestamp:true})
