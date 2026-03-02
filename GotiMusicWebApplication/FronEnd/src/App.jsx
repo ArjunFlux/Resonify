@@ -13,6 +13,7 @@ import ArtistPage from "./Components/ArtistPage";
 import AddYourMusic from "./Components/AddYourMusic";
 import ExplorePage from "./Components/ExplorePage";
 import PlaylistSongs from "./Pages/PlaylistSongs";
+import CustomPlaylist from "./Pages/CustomPlaylist";
 function App() {
   return (
     <div>
@@ -40,6 +41,7 @@ function App() {
           <Route path="/addyourmuisc" element={<AddYourMusic/>}/>
           <Route path="/explore" element={<ExplorePage/>}/>
           <Route path="/createplaylist" element={<PlaylistSongs/>}/>
+          <Route path="/customplaylist" element={<CustomPlaylist/>}/>
         </Route>
       </Routes>
     </div>

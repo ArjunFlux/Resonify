@@ -90,12 +90,12 @@ function PopularSongs() {
           <div>
             <p className=" text-3xl font-semibold mt-10 ml-15">{name}</p>
             <p className="ml-15 text-[13px] mt-3 text-gray-400">
-              Got some rad stuff you should listen to immediately. Find your{" "}
+              Got some rad stuff you should listen to immediately. Find your
               <br /> Favaroite, discover the hottest new beats and give me a
               follow
             </p>
             <p className="ml-15 mt-3 font-semibold">
-              {PlaylistType} || {LengtOfThePlaylist}{" "}
+              {PlaylistType} || {LengtOfThePlaylist}
             </p>
           </div>
         </div>

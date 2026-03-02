@@ -17,6 +17,7 @@ import { MdOutlineExplore } from "react-icons/md";
 import { TbMusicDollar } from "react-icons/tb";
 import { IoMdClose } from "react-icons/io";
 import { MdCloseFullscreen } from "react-icons/md";
+import { MdPlaylistAddCheck } from "react-icons/md";
 // This is the import for the swiper effect
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
@@ -31,6 +32,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 // data being imported from the json file
 function HomePage() {
+  const [isPlaylistCreated, setisPlaylistCreated] = useState(false);
   const navigate = useNavigate();
   const [isToken, setisToken] = useState();
   const [SongForDisplay, setSongsForDisplay] = useState([]);
@@ -85,6 +87,7 @@ function HomePage() {
       if (result.ok) {
         const DeletionConformation = await result.json();
         const DeletionCompleted = localStorage.removeItem("token");
+        const DeletethePlaylistToken = localStorage.removeItem("PlaylistCreated");
         setisToken(null);
         console.log("Deletion of the token completed");
       } else {
@@ -95,13 +98,24 @@ function HomePage() {
     }
   }
   async function handleOnClickToPlaySong(Song) {
-      setSongToBePlayed(Song.downloadUrl[2].url);
-      setShowAudioTag((prev) => !prev);
-      setSongIdMatch(Song.id);
+    setSongToBePlayed(Song.downloadUrl[2].url);
+    setShowAudioTag((prev) => !prev);
+    setSongIdMatch(Song.id);
   }
   function handleClick() {
     setShowAudioTag((prev) => !prev);
   }
+  useEffect(() => {
+    const CreatedPlaylist = async () => {
+      const isPresnet = localStorage.getItem("PlaylistCreated");
+      if (isPresnet) {
+        setisPlaylistCreated((prev) => !prev);
+      } else {
+        setisPlaylistCreated(prev);
+      }
+    };
+    CreatedPlaylist();
+  }, []);
   return (
     <>
       <div className="bg-linear-110 from-black flex to-slate-900 h-screen text-white overflow-hidden">
@@ -143,6 +157,14 @@ function HomePage() {
                 <RiPlayListLine size={32} className="cursor-pointer" />
                 <p>Chat With Friends</p>
               </div>
+              {isPlaylistCreated ? (
+                <Link to={`/customplaylist`}>
+                  <div className="relative flex items-center mt-10 gap-3 cursor-pointer">
+                    <MdPlaylistAddCheck size={32} className="cursor-pointer" />
+                    <p>Custom Playlist</p>
+                  </div>
+                </Link>
+              ) : null}
               {isToken ? (
                 <Link to={`/login`}>
                   <div
@@ -343,9 +365,11 @@ function HomePage() {
               <p className="text-center">Favaroite</p>
             </div>
           </Link>
-          <div className="mt-5 p-5 hover:bg-amber-50 hover:rounded-2xl hover:text-black cursor-pointer rounded-2xl">
-            <RiPlayListAddLine size={40} />
-          </div>
+          <Link to={`/createplaylist`}>
+            <div className="mt-5 p-5 hover:bg-amber-50 hover:rounded-2xl hover:text-black cursor-pointer rounded-2xl">
+              <RiPlayListAddLine size={40} />
+            </div>
+          </Link>
         </div>
         {SongForDisplay.map((song) => (
           <div key={song.id}>
