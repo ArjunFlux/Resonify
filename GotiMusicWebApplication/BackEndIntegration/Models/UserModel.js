@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://127.0.0.1:27017/MusicWebApplication').then(()=>{console.log("Connection established")}).catch((err)=>{console.log('Error while connecting to the Database',err)})
+mongoose.connect('mongodb+srv://parth_123:xdparth3010@cluster0.xxxxx.mongodb.net/MusicWebApplication')
+  .then(() => console.log("Connection established"))
+  .catch(err => console.error("Error while connecting to the Database", err));
 // Schema Creation 
 const UserSchema = mongoose.Schema({
     Name:{
