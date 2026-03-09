@@ -8,8 +8,10 @@ const PORT = 8001;
 // Cors handling
 app.use(
   cors({
-    origin: "https://resonify-3.onrender.com", // url which is requsting to the server
-    methods: ["GET", "POST", "PUT", "DELETE"], // methods which are allowed
+    origin: [
+  "http://localhost:5173",             
+  "https://resonifywebapplication-1.onrender.com"
+], // methods which are allowed
     credentials: true,
   }),
 );
