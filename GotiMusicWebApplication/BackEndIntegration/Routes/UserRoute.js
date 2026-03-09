@@ -28,7 +28,16 @@ router.get("/getmusic", async (req, res) => {
     res.status(500).json({ message: "Server Error", error: err });
   }
 });
-router.post("/addtoplaylist",handleAddOfMusicIntoPlaylist)
+const MusicIntoPlaylistModel = require('../Models/MusicIntoPlaylist')
+router.post("/addtoplaylist",handleAddOfMusicIntoPlaylist);
+router.get('/customplaylistdetails', async (req,res)=>{
+  try{
+    const MusicDetails = await MusicIntoPlaylistModel.find();
+    res.status(200).json(MusicDetails);
+  }catch(err){
+    res.status(500).json({status:'Error while fetching the details from the database'});
+  }
+})
 // This is a protected routes
 router.post("/upgrade", checkforauthentication, handleUpgradeUserRole);
 router.post(

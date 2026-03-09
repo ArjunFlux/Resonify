@@ -43,7 +43,7 @@ function CustomPlaylist() {
     userNameLocalstroage();
   }, []);
   return (
-    <div className="bg-linear-110 from-black flex to-slate-900 h-screen text-white overflow-y-hidden">
+    <div className="bg-linear-110 from-black  to-slate-900 h-screen text-white overflow-y-hidden">
       {/* This is the sidebar */}
       <div className="h-[87vh] w-[30vh] mx-10 rounded-2xl my-5 bg-gray-900">
         <div className="flex items-center">
@@ -91,18 +91,34 @@ function CustomPlaylist() {
           ) : null}
         </div>
       </div>
-      {MusicModelInfo.map((Playlist, id) => (
-        <div key={id}>
-          {Playlist.Author == UserName ? (
-            <div>
+      <div className="grid grid-cols-2 gap-10 w-[70%] ml-90 -mt-180">
+        {MusicModelInfo.map((Playlist, id) => (
+          <div key={id}>
+            {Playlist.Author == UserName ? (
               <div>
-                <p>{Playlist.NameOfPlaylist}</p>
-                <p>{Playlist.Discription}</p>
+                <Link to={`/userplaylist`} state={{
+                  name:Playlist.NameOfPlaylist,
+                  discription:Playlist.Discription
+                }}>
+                  <div className="bg-linear-to-r from-blue-800 rounded-2xl to-slate-700 flex gap-10 items-center cursor-pointer py-2 px-5">
+                    <div>
+                      <img
+                        src="/image copy.png"
+                        alt="Photo of the Playlist"
+                        className="h-20 rounded-full"
+                      />
+                    </div>
+                    <div>
+                      <p className="text-2xl">{Playlist.NameOfPlaylist}</p>
+                      <p>{Playlist.Discription}</p>
+                    </div>
+                  </div>
+                </Link>
               </div>
-            </div>
-          ) : null}
-        </div>
-      ))}
+            ) : null}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

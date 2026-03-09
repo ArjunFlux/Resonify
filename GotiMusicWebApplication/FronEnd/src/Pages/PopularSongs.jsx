@@ -9,6 +9,7 @@ import { TbMusicDollar } from "react-icons/tb";
 import { IoMdAdd } from "react-icons/io";
 import { FaRegPlayCircle } from "react-icons/fa";
 import { MdCloseFullscreen } from "react-icons/md";
+import { IoIosClose } from "react-icons/io";
 function PopularSongs() {
   const location = useLocation();
   const {
@@ -23,17 +24,75 @@ function PopularSongs() {
   const [ShowAudioTag, setShowAudioTag] = useState(false); // This is the react variable for the display of the audio tag
   const [SongIdMatch, setSongIdMatch] = useState(null);
   const [SongForDisplay, setSongsForDisplay] = useState([]);
+  const [MusicModelInfo, setMusicModelInfo] = useState([]);
+  const [UserName, setUserName] = useState("");
+  const [showPlaylistDiv, setshowPlaylistDiv] = useState(false);
+  const [SelectedSongId, setSelectedSongId] = useState(null);
   async function handleOnClickToPlaySong(Song) {
-      setSongsForDisplay(Song);
-      setSongToBePlayed(Song.downloadUrl[1].url);
-      setShowAudioTag((prev) => !prev);
-      setSongIdMatch(Song.id);
+    setSongsForDisplay(Song);
+    setSongToBePlayed(Song.downloadUrl[1].url);
+    setShowAudioTag((prev) => !prev);
+    setSongIdMatch(Song.id);
   }
   function handleClick() {
     setShowAudioTag((prev) => !prev);
   }
+  async function handleSongPlacementIntoThePlaylist(SongForTheInput) {
+    const CheckForThePlaylist = localStorage.getItem("PlaylistCreated");
+    setSelectedSongId(SongForTheInput.id);
+    if (!CheckForThePlaylist) {
+      console.log(
+        "No Playlist , Make one and than come to add the song into that playlist",
+      );
+    }
+    try {
+      const MusicInfo = await fetch("http://localhost:8001/user/getmusic", {
+        method: "GET",
+      });
+      if (MusicInfo.ok) {
+        const MusicInfoResponse = await MusicInfo.json();
+        setMusicModelInfo(MusicInfoResponse);
+        setUserName(CheckForThePlaylist);
+        setshowPlaylistDiv((prev) => !prev);
+      } else {
+        console.log("Error in fetching the data from the backend");
+      }
+    } catch (err) {
+      console.log(
+        "Server error while getting the names of the playlist : ",
+        err,
+      );
+    }
+  }
+  async function handleThePlaylistInfoAndAddSongDetails(
+    PlaylistName,
+    InputSongDetails,
+  ) {
+    console.log("The Playlist name is : ", PlaylistName, InputSongDetails);
+    const DataForBackEnd = {
+      NameOfSong: InputSongDetails,
+      NameOfPlaylist: PlaylistName,
+    };
+    try {
+      const response = await fetch("http://localhost:8001/user/addtoplaylist", {
+        method: "POST", // this is the how we want to send the data to the backend
+        credentials: "include",
+        headers: { "Content-type": "application/json" }, // what is the type of the data
+        body: JSON.stringify(DataForBackEnd),
+      });
+      if (response.ok) {
+        const JsonResponse = await response.json();
+      } else {
+        console.log("Error from the backend");
+      }
+    } catch (err) {
+      console.log(
+        "Server error while adding the songs and playlist details into the database",
+      );
+    }
+  }
   return (
-    <div className="flex bg-linear-110 from-black to-slate-900 h-[200vh] text-white">
+    <div className="flex bg-linear-110 from-black to-slate-900 min-h-screen text-white">
       <div>
         <div className="h-[87vh] w-[30vh] mx-10 rounded-2xl my-5 bg-gray-900">
           <div className="flex items-center">
@@ -146,37 +205,68 @@ function PopularSongs() {
                     <IoMdAdd
                       className="hover:border hover:rounded-full ml-25 hover:bg-gray-600 cursor-pointer hover:text-black"
                       size={25}
+                      onClick={() => {
+                        handleSongPlacementIntoThePlaylist(song);
+                      }}
                     />
+                    {/* This code is from the Custom Playlist part  */}
+                    {showPlaylistDiv && song.id == SelectedSongId ? (
+                      <div className="border border-gray-500 text-gray-500 w-fit ml-30 py-3 px-10">
+                        {MusicModelInfo.map((Playlist, id) => (
+                          <div key={id}>
+                            {Playlist.Author == UserName ? (
+                              <div>
+                                <div>
+                                  <div>
+                                    <p
+                                      className="text-[15px] cursor-pointer hover:text-orange-500"
+                                      onClick={() => {
+                                        handleThePlaylistInfoAndAddSongDetails(
+                                          Playlist,
+                                          song,
+                                        );
+                                      }}
+                                    >
+                                      {Playlist.NameOfPlaylist}
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            ) : null}
+                          </div>
+                        ))}
+                      </div>
+                    ) : null}
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
-              {ShowAudioTag && SongForDisplay.id === SongIdMatch && (
-                <div className="border border-gray-800 absolute top-0 right-15 -mr-10 h-80 w-80 backdrop-blur-3xl rounded-2xl">
-                  <div>
-                    <img
-                      src={SongForDisplay.image[2].url || "/placeholder.png"}
-                      className="h-45 ml-15 mt-3 rounded-full"
-                    />
-                    <div>
-                      <p className="text-center font-bold mt-5">
-                        {SongForDisplay.album.name.split("(")[0].trim()}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-10 px-5 mt-5">
-                    <audio controls autoPlay loop src={SongToBePlayed} />
-                    <MdCloseFullscreen
-                      size={30}
-                      className="-ml-5 hover:text-red-400 cursor-pointer"
-                      onClick={() => {
-                        handleClick();
-                      }}
-                    />
-                  </div>
+          {ShowAudioTag && SongForDisplay.id === SongIdMatch && (
+            <div className="border border-gray-800 absolute top-0 right-15 -mr-10 h-80 w-80 backdrop-blur-3xl rounded-2xl">
+              <div>
+                <img
+                  src={SongForDisplay.image[2].url || "/placeholder.png"}
+                  className="h-45 ml-15 mt-3 rounded-full"
+                />
+                <div>
+                  <p className="text-center font-bold mt-5">
+                    {SongForDisplay.album.name.split("(")[0].trim()}
+                  </p>
                 </div>
-              )}
+              </div>
+              <div className="flex items-center gap-10 px-5 mt-5">
+                <audio controls autoPlay loop src={SongToBePlayed} />
+                <MdCloseFullscreen
+                  size={30}
+                  className="-ml-5 hover:text-red-400 cursor-pointer"
+                  onClick={() => {
+                    handleClick();
+                  }}
+                />
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

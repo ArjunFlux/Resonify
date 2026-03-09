@@ -36,7 +36,6 @@ function ExplorePage() {
     };
     fetchHollywoodSong();
   },[])
-  const [FirstSong, SecondSong, ThirdSong, ForurthSong] = SongForDisplay;
   return (
     <div className="bg-linear-110 from-black to-slate-900 h-screen text-white">
       <div className="bg-linear-110 from-black flex to-slate-900 h-screen text-white overflow-y-hidden">

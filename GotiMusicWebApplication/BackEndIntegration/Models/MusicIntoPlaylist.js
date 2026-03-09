@@ -12,8 +12,5 @@ const MusicIntoPlaylistSchema = mongoose.Schema(
   },
   { timestamp: true },
 );
-const MusicIntoPlaylistModel = mongoose.model(
-  "MusicIntoPlaylistmodel",
-  MusicIntoPlaylistSchema,
-);
+const MusicIntoPlaylistModel = mongoose.model("MusicIntoPlaylistmodel",MusicIntoPlaylistSchema,);
 module.exports = MusicIntoPlaylistModel;

@@ -1,5 +1,6 @@
 const MusicIntoPlaylistModel = require('../Models/MusicIntoPlaylist')
 async function handleAddOfMusicIntoPlaylist(req,res){
+    const {NameOfSong , NameOfPlaylist} = req.body;
     console.log(NameOfSong,NameOfPlaylist);
     if(!NameOfSong || !NameOfPlaylist){
         return res.status(400).json({status:"Invalid Data from the frontend"});
