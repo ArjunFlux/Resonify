@@ -1,7 +1,8 @@
+
 const express = require("express");
 const app = express();
 const userRouter = require("./Routes/UserRoute");
-const ApiRoute = require('../BackEndIntegration/Routes/ApiRoute')
+const ApiRoute = require('../BackEndIntegration/Routes/ApiRoute');
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const PORT = 8001;
