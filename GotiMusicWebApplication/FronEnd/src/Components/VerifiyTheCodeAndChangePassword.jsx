@@ -9,7 +9,7 @@ function VerifiyTheCodeAndChangePassword() {
           NewPassword : e.target.NewPassword.value
         }
         try{
-          const VerificationData = await fetch('https://resonify-5.onrender.com/user/verifiy',{
+          const VerificationData = await fetch('https://resonifybackend.onrender.com/user/verifiy',{
           method:"POST",
           credentials:'include',
           headers:{"Content-type":"application/json"},

@@ -13,7 +13,7 @@ function ExplorePage() {
   useEffect(() => {
     const fetchSongs = async () => {
       try {
-        const res = await fetch("https://resonify-5.onrender.com/api/showMore?q=Bollywood");
+        const res = await fetch("https://resonifybackend.onrender.com/api/showMore?q=Bollywood");
         const songs = await res.json();
         console.log("Songs for the explre sections:", songs);
         setSongsForDisplay(songs.data.results);
@@ -26,7 +26,7 @@ function ExplorePage() {
   useEffect(()=>{
     const fetchHollywoodSong = async ()=>{
       try{
-        const res = await fetch("https://resonify-5.onrender.com/api/hollywood");
+        const res = await fetch("https://resonifybackend.onrender.com/api/hollywood");
         const songs = await res.json();
         console.log("Hollywood Songs for the Playlist sections:", songs);
         setSongForHollywood(songs.data.results);

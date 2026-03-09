@@ -9,7 +9,7 @@ function Login() {
       Password : events.target.Password.value
     }
       try { // this is send to the backend 
-        const response = await fetch('https://resonify-5.onrender.com/user/login',{
+        const response = await fetch('https://resonifybackend.onrender.com/user/login',{
         method:"POST", // this is the how we want to send the data to the backend 
         credentials:'include',
         headers:{"Content-type":"application/json"}, // what is the type of the data 

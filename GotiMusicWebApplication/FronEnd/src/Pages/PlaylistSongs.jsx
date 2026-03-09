@@ -36,11 +36,9 @@ function PlaylistSongs() {
     };
     try {
       const FetchtResponse = await fetch(
-        "https://resonify-5.onrender.com/user/createmusic",
+        "https://resonifybackend.onrender.com/user/createmusic",
         {
-          method: "POST", // this is the how we want to send the data to the backend
-          credentials: "include",
-          headers: { "Content-type": "application/json" }, // what is the type of the data
+          method: "POST", // this is the how we want to send the data to the backend, 
           body: JSON.stringify(FormData), // we use stringify when we have to add/send the data and we use praser when we want to read the data
         },
       );
@@ -50,7 +48,7 @@ function PlaylistSongs() {
         localStorage.setItem("PlaylistCreated", UserName.Name);
         navigate("/mainpage");
       } else {
-        console.log("Error while login ", response.status);
+        console.log("Error while login ", FetchtResponse.status);
       }
     } catch (err) {
       console.log("Error while creating the playlist:", err);
