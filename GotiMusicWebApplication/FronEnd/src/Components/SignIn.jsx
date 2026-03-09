@@ -14,7 +14,7 @@ function SignIn() {
       navigate('/signin');
     }
       try {
-        const response = await fetch('https://resonify-2.onrender.com/user/create',{
+        const response = await fetch('https://resonify-5.onrender.com/user/create',{
         method:"POST", // this is the how we want to send the data to the backend 
         headers:{"Content-type":"application/json"}, // what is the type of the data 
         body:JSON.stringify(formData)// we use stringify when we have to add/send the data and we use praser when we want to read the data
@@ -45,7 +45,7 @@ function SignIn() {
       </div>
       <div className='h-screen w-[50vw]'>
         {/* Note that the onSubmit function works on the forms */}
-        <form className='ml-[20%] mt-[30%]' method='post' onSubmit={handlesubmit} action={`https://resonify-2.onrender.com/user/create`}>
+        <form className='ml-[20%] mt-[30%]' method='post' onSubmit={handlesubmit} action={`https://resonify-5.onrender.com/user/create`}>
           <p className='font-extrabold text-4xl'>Hi Music Lover !!</p>
           <p className='mt-3 font-semibold text-2xl'> Welcome to Musikali</p>
           <input placeholder='Enter Your Name here : ' type='text' name='Name' className='border w-[70%] rounded-2xl mt-8 p-3'/>

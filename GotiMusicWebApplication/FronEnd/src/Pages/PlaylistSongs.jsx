@@ -36,7 +36,7 @@ function PlaylistSongs() {
     };
     try {
       const FetchtResponse = await fetch(
-        "https://resonify-2.onrender.com/user/createmusic",
+        "https://resonify-5.onrender.com/user/createmusic",
         {
           method: "POST", // this is the how we want to send the data to the backend
           credentials: "include",

@@ -22,7 +22,7 @@ function ArtistPage() {
   useEffect(() => {
     const fetchSongs = async () => {
       try {
-        const res = await fetch("https://resonify-2.onrender.com/api/show?q=Bollywood");
+        const res = await fetch("https://resonify-5.onrender.com/api/show?q=Bollywood");
         const songs = await res.json();
         console.log("Songs from backend:", songs);
         setSongsForDisplay(songs.data.results);
@@ -45,7 +45,7 @@ function ArtistPage() {
     const UserChoice = e.target.textContent; // to read the value of an tag use this not .value , it is used for the input tag
     if (UserChoice == "Bollywood" || UserChoice == "Hollywood") {
       try {
-        const ResponseData = await fetch(`https://resonify-2.onrender.com/api/show?q=${UserChoice}`);
+        const ResponseData = await fetch(`https://resonify-5.onrender.com/api/show?q=${UserChoice}`);
         const responseData = await ResponseData.json();
         console.log("User Selected song is : ", responseData);
         setSongsForDisplay(responseData.data.results);
@@ -55,7 +55,7 @@ function ArtistPage() {
       }
     } else if (UserChoice == "Hindi" || UserChoice == "English") {
       try {
-        const ResponseData = await fetch(`https://resonify-2.onrender.com/api/language?q=${UserChoice}`);
+        const ResponseData = await fetch(`https://resonify-5.onrender.com/api/language?q=${UserChoice}`);
         const responseData = await ResponseData.json();
         console.log("User Selected song is : ", responseData);
         setSongsForDisplay(responseData.data.results);
@@ -70,7 +70,7 @@ function ArtistPage() {
     const songname = SongName;
     console.log("Song Name Entered by the user is : ", songname);
     try {
-      const SongResponse = await fetch(`https://resonify-2.onrender.com/api/song?q=${songname}`);
+      const SongResponse = await fetch(`https://resonify-5.onrender.com/api/song?q=${songname}`);
       const SongResponseBack = await SongResponse.json();
       console.log("User Entered Song Details are : ", SongResponseBack);
       setUserSongPlay(SongResponseBack.data.results);

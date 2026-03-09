@@ -23,7 +23,7 @@ function CustomPlaylist() {
   }, []);
   useEffect(() => {
     const MusicModelDetails = async () => {
-      const MusicInfo = await fetch("https://resonify-2.onrender.com/getmusic", {
+      const MusicInfo = await fetch("https://resonify-5.onrender.com/user/getmusic", {
         method: "GET",
       });
       if (MusicInfo.ok) {

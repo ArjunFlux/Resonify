@@ -40,7 +40,7 @@ function PlaylistForCustomUser() {
     const MusicDetails = async () => {
       try {
         const response = await fetch(
-          "https://resonify-2.onrender.com/user/customplaylistdetails",
+          "https://resonify-5.onrender.com/user/customplaylistdetails",
           {
             method: "GET",
           },
