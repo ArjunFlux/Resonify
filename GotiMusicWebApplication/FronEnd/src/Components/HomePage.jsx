@@ -55,7 +55,7 @@ function HomePage() {
   useEffect(() => {
     const fetchSongs = async () => {
       try {
-        const res = await fetch("/api/show?q=Bollywood");
+        const res = await fetch("https://resonify-2.onrender.com/api/show?q=Bollywood");
         const songs = await res.json();
         console.log("Songs from backend:", songs);
         setSongsForDisplay(songs.data.results);
@@ -68,7 +68,7 @@ function HomePage() {
   useEffect(() => {
     const fetchSongs = async () => {
       try {
-        const res = await fetch("/api/showMore?q=Bollywood");
+        const res = await fetch("https://resonify-2.onrender.com/api/showMore?q=Bollywood");
         const songs = await res.json();
         console.log("Songs from backend:", songs);
         setSongForPlaylist(songs.data.results);
@@ -80,7 +80,7 @@ function HomePage() {
   }, []);
   async function handleLogout() {
     try {
-      const result = await fetch("http://localhost:8001/logout", {
+      const result = await fetch("https://resonify-2.onrender.com/logout", {
         method: "GET",
         credentials: "include", // if there is any invole of the tokens or anyother things thing use this
       });
