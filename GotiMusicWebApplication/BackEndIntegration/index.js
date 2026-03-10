@@ -1,20 +1,23 @@
-
+require('dotenv').config();
 const express = require("express");
 const app = express();
 const userRouter = require("./Routes/UserRoute");
-const ApiRoute = require('../BackEndIntegration/Routes/ApiRoute');
+const ApiRoute = require("../BackEndIntegration/Routes/ApiRoute");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const PORT = 8001;
 // Cors handling
+require('./Models/db');
 app.use(
   cors({
     origin: [
-  "http://localhost:5173",             
-  "https://resonifywebapplication-1.onrender.com",
-  "https://resonifyfinial.onrender.com"
-], // methods which are allowed
+      "http://localhost:5173",
+      "https://resonifywebapplication-1.onrender.com",
+      "https://resonifyfinial.onrender.com",
+    ], // methods which are allowed
     credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   }),
 );
 // Middleware
@@ -23,7 +26,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 // Routes
 app.use("/user", userRouter);
-app.use("/api",ApiRoute);
+app.use("/api", ApiRoute);
 // Loutout Router to delete the cookie
 app.get("/logout", (req, res) => {
   res.clearCookie("JwtTOken");

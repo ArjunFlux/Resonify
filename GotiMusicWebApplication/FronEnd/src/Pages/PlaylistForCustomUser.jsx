@@ -40,7 +40,7 @@ function PlaylistForCustomUser() {
     const MusicDetails = async () => {
       try {
         const response = await fetch(
-          "https://resonifybackend.onrender.com/user/customplaylistdetails",
+          "http://localhost:8001/user/customplaylistdetails",
           {
             method: "GET",
           },
@@ -136,7 +136,7 @@ function PlaylistForCustomUser() {
             <p>Ablum</p>
             <p>Duration</p>
           </div>
-          <hr className="mt-5 ml-32 text-gray-700"/>
+          <hr className="mt-5 ml-32 text-gray-700" />
           {SavedSongDetails.map((SavedSong) => (
             <div key={SavedSong.id}>
               {CurrentUserName == SavedSong.NameOfPlaylistInDataBase.Author &&
@@ -182,7 +182,7 @@ function PlaylistForCustomUser() {
                   </p>
                   {ShowAudioTag &&
                     SavedSong.SongDetailsInDataBase.id == SongId && (
-                      <div className="border border-gray-800 absolute top-0 right-15 -mr-10 h-80 w-80 backdrop-blur-3xl rounded-2xl">
+                      <div className="border border-gray-800 absolute bottom-5 left-10 -mr-10 h-80 w-80 backdrop-blur-3xl rounded-2xl">
                         {SongAudioDisplay && (
                           <div>
                             <div>

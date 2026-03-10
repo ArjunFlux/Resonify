@@ -18,7 +18,7 @@ function NavBar() {
   },[])
   async function handleLogout(){
     try{
-      const result = await fetch('https://resonifybackend.onrender.com/logout',{
+      const result = await fetch('http://localhost:8001/logout',{
       method:"GET",
       credentials:'include',
     })

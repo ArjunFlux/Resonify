@@ -4,7 +4,7 @@
   "description": "This is the personalized music Web Application",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "nodemon index.js"
   },
   "author": "Parth Upadhyay",
   "license": "ISC",
@@ -14,7 +14,7 @@
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.6",
     "deep-email-validator": "^0.1.21",
-    "dotenv": "^16.3.1",
+    "dotenv": "^16.6.1",
     "express": "^5.2.1",
     "ioredis": "^5.9.2",
     "jsonwebtoken": "^9.0.3",

@@ -8,7 +8,6 @@ import ForgetPassword from "./Components/ForgetPassword";
 import VerifiyTheCodeAndChangePassword from "./Components/VerifiyTheCodeAndChangePassword";
 import HomePage from "./Components/HomePage";
 import PopularSongs from "./Pages/PopularSongs";
-import ProtectedRoute from "./Components/CheckForAuth";
 import ArtistPage from "./Components/ArtistPage";
 import AddYourMusic from "./Components/AddYourMusic";
 import ExplorePage from "./Components/ExplorePage";
@@ -35,16 +34,14 @@ function App() {
           path="/verifiyandchange"
           element={<VerifiyTheCodeAndChangePassword />}
         />
-        <Route element={<ProtectedRoute />}>
-          <Route path="/mainpage" element={<HomePage />} />
-          <Route path="/playlist" element={<PopularSongs />} />
-          <Route path="/artist" element={<ArtistPage/>}/>
-          <Route path="/addyourmuisc" element={<AddYourMusic/>}/>
-          <Route path="/explore" element={<ExplorePage/>}/>
-          <Route path="/createplaylist" element={<PlaylistSongs/>}/>
-          <Route path="/customplaylist" element={<CustomPlaylist/>}/>
-          <Route path="/userplaylist" element={<PlaylistForCustomUser/>}/>
-        </Route>
+        <Route path="/mainpage" element={<HomePage />} />
+        <Route path="/playlist" element={<PopularSongs />} />
+        <Route path="/artist" element={<ArtistPage />} />
+        <Route path="/addyourmuisc" element={<AddYourMusic />} />
+        <Route path="/explore" element={<ExplorePage />} />
+        <Route path="/createplaylist" element={<PlaylistSongs />} />
+        <Route path="/customplaylist" element={<CustomPlaylist />} />
+        <Route path="/userplaylist" element={<PlaylistForCustomUser />} />
       </Routes>
     </div>
   );

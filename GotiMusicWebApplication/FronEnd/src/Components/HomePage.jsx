@@ -80,7 +80,7 @@ function HomePage() {
   }, []);
   async function handleLogout() {
     try {
-      const result = await fetch("https://resonifybackend.onrender.com/logout", {
+      const result = await fetch("http://localhost:8001/logout", {
         method: "GET",
         credentials: "include", // if there is any invole of the tokens or anyother things thing use this
       });

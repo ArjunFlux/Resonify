@@ -9,24 +9,24 @@ import { MdPlaylistAddCheck } from "react-icons/md";
 import { jwtDecode } from "jwt-decode";
 function PlaylistSongs() {
   const [isPlaylistCreated, setisPlaylistCreated] = useState(false);
-  const [UserName , setUserName] = useState("");
+  const [UserName, setUserName] = useState("");
   const navigate = useNavigate();
-  useEffect(()=>{
-    const UserNameFunction = async ()=>{
+  useEffect(() => {
+    const UserNameFunction = async () => {
       const LocalStorageToken = localStorage.getItem("token");
-      try{
-        if(LocalStorageToken){
+      try {
+        if (LocalStorageToken) {
           const DecodedToken = jwtDecode(LocalStorageToken);
           setUserName(DecodedToken);
-        }else{
+        } else {
           console.log("Error in getting the token from the local storage");
         }
-      }catch(err){
-        console.log("Unkown Error Occured")
+      } catch (err) {
+        console.log("Unkown Error Occured");
       }
     };
     UserNameFunction();
-  },[])
+  }, []);
   async function handleSubmit(e) {
     e.preventDefault();
     const FormData = {
@@ -36,9 +36,11 @@ function PlaylistSongs() {
     };
     try {
       const FetchtResponse = await fetch(
-        "https://resonifybackend.onrender.com/user/createmusic",
+        "http://localhost:8001/user/createmusic",
         {
-          method: "POST", // this is the how we want to send the data to the backend, 
+          method: "POST", // this is the how we want to send the data to the backend,
+          credentials: "include",
+          headers: { "Content-type": "application/json" },
           body: JSON.stringify(FormData), // we use stringify when we have to add/send the data and we use praser when we want to read the data
         },
       );
@@ -48,7 +50,7 @@ function PlaylistSongs() {
         localStorage.setItem("PlaylistCreated", UserName.Name);
         navigate("/mainpage");
       } else {
-        console.log("Error while login ", FetchtResponse.status);
+        console.log("Error while Creating the playlist ", FetchtResponse.status);
       }
     } catch (err) {
       console.log("Error while creating the playlist:", err);

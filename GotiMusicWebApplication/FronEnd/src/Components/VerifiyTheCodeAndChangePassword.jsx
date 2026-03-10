@@ -9,7 +9,7 @@ function VerifiyTheCodeAndChangePassword() {
           NewPassword : e.target.NewPassword.value
         }
         try{
-          const VerificationData = await fetch('https://resonifybackend.onrender.com/user/verifiy',{
+          const VerificationData = await fetch('http://localhost:8001/user/verifiy',{ 
           method:"POST",
           credentials:'include',
           headers:{"Content-type":"application/json"},
@@ -41,7 +41,7 @@ function VerifiyTheCodeAndChangePassword() {
         </div>
       </div>
       <div className='h-screen w-[50vw]'>
-        <form className='ml-[20%] mt-[30%]' onSubmit={handlesubmit} action={`https://resonify-2.onrender.com/user/create`} method='POST'>
+        <form className='ml-[20%] mt-[30%]' onSubmit={handlesubmit}>
           <p className='font-extrabold text-4xl'>Continue Your Journey <br/></p>
           <p className='ml-7 font-semibold mt-2'>Forget Password Don't Worry we have your back</p>
           <input placeholder='Enter the verification code here : ' type='text' name='VerificationCode' className='border w-[70%] rounded-2xl mt-8 p-3'/>

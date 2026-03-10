@@ -8,7 +8,7 @@ function ForgetPassword() {
       Email : events.target.Email.value
     }
     try{
-      const response = await fetch('https://resonifybackend.onrender.com/user/emailverification',{
+      const response = await fetch('http://localhost:8001/user/emailverification',{ 
         method:"POST",
         credentials:'include',
         headers:{"Content-type":"application/json"},

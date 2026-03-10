@@ -46,7 +46,7 @@ function PopularSongs() {
       );
     }
     try {
-      const MusicInfo = await fetch("https://resonifybackend.onrender.com/user/getmusic", {
+      const MusicInfo = await fetch("http://localhost:8001/user/getmusic", {
         method: "GET",
       });
       if (MusicInfo.ok) {

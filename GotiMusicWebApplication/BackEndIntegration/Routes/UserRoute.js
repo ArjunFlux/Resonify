@@ -9,7 +9,6 @@ const handleEmailSend = require("../Controllers/EmailSend");
 const handleOtpVerificationOfTheUser = require("../Controllers/HandleOtpVerificationOfTheUser");
 const CheckTheEmailbeforeTheOtpGeneration = require("../Middleware/CheckTheEmailBeforeTheOtpGeneration");
 const handleMusicPlaylistCreation = require("../Controllers/HandleMusicModel");
-const checkforauthentication = require("../Middleware/CheckForAuthentication");
 const handleAddOfMusicIntoPlaylist = require('../Controllers/handleAddOfMusicIntoPlaylist')
 // Route for the connection between the Server and Database
 router.post("/create", handleCreateUser); // signup
@@ -33,16 +32,15 @@ router.post("/addtoplaylist",handleAddOfMusicIntoPlaylist);
 router.get('/customplaylistdetails', async (req,res)=>{
   try{
     const MusicDetails = await MusicIntoPlaylistModel.find();
-    res.status(200).json(MusicDetails);
+    return res.status(200).json(MusicDetails);
   }catch(err){
     res.status(500).json({status:'Error while fetching the details from the database'});
   }
 })
 // This is a protected routes
-router.post("/upgrade", checkforauthentication, handleUpgradeUserRole);
+router.post("/upgrade", handleUpgradeUserRole);
 router.post(
   "/createmusic",
-  checkforauthentication,
   handleMusicPlaylistCreation,
 );
 module.exports = router;

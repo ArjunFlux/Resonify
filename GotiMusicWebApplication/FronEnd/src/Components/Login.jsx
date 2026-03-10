@@ -9,7 +9,7 @@ function Login() {
       Password : events.target.Password.value
     }
       try { // this is send to the backend 
-        const response = await fetch('https://resonifybackend.onrender.com/user/login',{
+        const response = await fetch('http://localhost:8001/user/login',{
         method:"POST", // this is the how we want to send the data to the backend 
         credentials:'include',
         headers:{"Content-type":"application/json"}, // what is the type of the data 
@@ -41,7 +41,7 @@ function Login() {
       </div>
       <div className='h-screen w-[50vw]'>
         {/* Note that the onSubmit function works on the forms */}
-        <form className='ml-[20%] mt-[30%]' method='post' onSubmit={handlesubmit} action={`https://resonify-5.onrender.com/user/create`}>
+        <form className='ml-[20%] mt-[30%]' method='post' onSubmit={handlesubmit}>
           <p className='font-extrabold text-4xl'>Continue Your Journey</p>
           <input placeholder='Enter Your Email here : ' type='email' name='Email' className='border w-[70%] rounded-2xl mt-8 p-3'/>
           <input placeholder='Enter Your Password here : ' type='password' name='Password' className='border w-[70%] rounded-2xl mt-8 p-3'/><br/>
