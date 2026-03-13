@@ -20,8 +20,10 @@ router.post(
 );
 router.post("/verifiy", handleOtpVerificationOfTheUser);
 router.get("/getmusic", async (req, res) => {
+  const UserName = req.query.q;
+  // console.log("This is the user name of the user",UserName);
   try {
-    const MusicModelInfo = await MusicModel.find();
+    const MusicModelInfo = await MusicModel.find({Author:UserName});
     res.json(MusicModelInfo);
   } catch (err) {
     res.status(500).json({ message: "Server Error", error: err });
