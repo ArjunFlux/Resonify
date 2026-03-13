@@ -12,8 +12,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      "https://resonifywebapplication-1.onrender.com",
-      "https://resonifyfinial.onrender.com",
+      "https://resonify-3frontend.onrender.com",
     ], // methods which are allowed
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
