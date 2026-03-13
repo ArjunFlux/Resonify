@@ -18,13 +18,14 @@ function NavBar() {
   },[])
   async function handleLogout(){
     try{
-      const result = await fetch('http://localhost:8001/logout',{
+      const result = await fetch('https://resonify-3backend.onrender.com/logout',{
       method:"GET",
       credentials:'include',
     })
     if(result.ok){
       const DeletionConformation = await result.json();
       const DeletionCompleted = localStorage.removeItem('token');
+      const DelePlaylistTOken = localStorage.removeItem('PlaylistCreated');
       setisToken(null);
       console.log("Deletion of the token completed")
     }else{

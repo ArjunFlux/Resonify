@@ -23,9 +23,14 @@ function CustomPlaylist() {
   }, []);
   useEffect(() => {
     const MusicModelDetails = async () => {
-      const MusicInfo = await fetch("http://localhost:8001/user/getmusic", {
-        method: "GET",
-      });
+      const UserNameFromLocalStorage = localStorage.getItem("PlaylistCreated");
+      setUserName(UserNameFromLocalStorage);
+      const MusicInfo = await fetch(
+        `https://resonify-3backend.onrender.com/user/getmusic?q=${UserNameFromLocalStorage}`,
+        {
+          method: "GET",
+        },
+      );
       if (MusicInfo.ok) {
         const MusicInfoResponse = await MusicInfo.json();
         setMusicModelInfo(MusicInfoResponse);
@@ -34,13 +39,6 @@ function CustomPlaylist() {
       }
     };
     MusicModelDetails();
-  }, []);
-  useEffect(() => {
-    const userNameLocalstroage = async () => {
-      const UserNameFromLocalStorage = localStorage.getItem("PlaylistCreated");
-      setUserName(UserNameFromLocalStorage);
-    };
-    userNameLocalstroage();
   }, []);
   return (
     <div className="bg-linear-110 from-black  to-slate-900 min-h-screen text-white overflow-y-hidden">
@@ -91,15 +89,17 @@ function CustomPlaylist() {
           ) : null}
         </div>
       </div>
-      <div className="grid grid-cols-1 items-center gap-10 ml-120 w-[50%] -mt-210">
-        {MusicModelInfo.map((Playlist, id) => (
-          <div key={id}>
-            {Playlist.Author == UserName ? (
+      <div className="grid grid-cols-2 gap-25 ml-90 w-[70%] -mt-170">
+        {MusicModelInfo.map((Playlist) => (
+          <div key={Playlist.id}>
               <div>
-                <Link to={`/userplaylist`} state={{
-                  name:Playlist.NameOfPlaylist,
-                  discription:Playlist.Discription
-                }}>
+                <Link
+                  to={`/userplaylist`}
+                  state={{
+                    name: Playlist.NameOfPlaylist,
+                    discription: Playlist.Discription,
+                  }}
+                >
                   <div className="bg-linear-to-r from-blue-800  rounded-2xl to-slate-700 flex gap-10 items-center cursor-pointer py-2 px-5">
                     <div>
                       <img
@@ -115,7 +115,6 @@ function CustomPlaylist() {
                   </div>
                 </Link>
               </div>
-            ) : null}
           </div>
         ))}
       </div>

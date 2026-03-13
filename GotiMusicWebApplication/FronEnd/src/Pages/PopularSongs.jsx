@@ -46,7 +46,7 @@ function PopularSongs() {
       );
     }
     try {
-      const MusicInfo = await fetch("http://localhost:8001/user/getmusic", {
+      const MusicInfo = await fetch(`https://resonify-3backend.onrender.com/user/getmusic?q=${CheckForThePlaylist}`, {
         method: "GET",
       });
       if (MusicInfo.ok) {
@@ -74,7 +74,7 @@ function PopularSongs() {
       NameOfPlaylist: PlaylistName,
     };
     try {
-      const response = await fetch("https://resonify-5.onrender.com/user/addtoplaylist", {
+      const response = await fetch("https://resonify-3backend.onrender.com/user/addtoplaylist", {
         method: "POST", // this is the how we want to send the data to the backend
         credentials: "include",
         headers: { "Content-type": "application/json" }, // what is the type of the data

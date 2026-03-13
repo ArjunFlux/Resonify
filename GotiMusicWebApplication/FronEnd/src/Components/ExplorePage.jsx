@@ -13,7 +13,7 @@ function ExplorePage() {
   useEffect(() => {
     const fetchSongs = async () => {
       try {
-        const res = await fetch("http://localhost:8001/api/showMore?q=Bollywood");
+        const res = await fetch("https://resonify-3backend.onrender.com/api/showMore?q=Bollywood");
         const songs = await res.json();
         console.log("Songs for the explre sections:", songs);
         setSongsForDisplay(songs.data.results);
@@ -26,7 +26,7 @@ function ExplorePage() {
   useEffect(()=>{
     const fetchHollywoodSong = async ()=>{
       try{
-        const res = await fetch("http://localhost:8001/api/hollywood");
+        const res = await fetch("https://resonify-3backend.onrender.com/api/hollywood");
         const songs = await res.json();
         console.log("Hollywood Songs for the Playlist sections:", songs);
         setSongForHollywood(songs.data.results);
@@ -86,7 +86,7 @@ function ExplorePage() {
             <p className="mt-10 text-2xl font-bold">Explore Page</p>
           </div>
           <div>
-            <div className="flex items-center gap-5 cursor-pointer">
+            <div className="flex items-center gap-5">
               <p className="mt-5 font-bold text-3xl text-orange-500">
                 Refreshing Bollywood Playlist
               </p>
@@ -179,7 +179,7 @@ function ExplorePage() {
       </div>
       {/* This is the hollywood songs playlist  */}
       <div>
-        <div className="flex items-center gap-5 cursor-pointer -mt-100 ml-80">
+        <div className="flex items-center gap-5 -mt-100 ml-80">
           <p className="mt-5 font-bold text-3xl text-orange-500">
             Refreshing Hollywood Playlist
           </p>
@@ -198,9 +198,9 @@ function ExplorePage() {
             >
               <div className="mt-5 p-5 bg-linear-160 from-orange-600 to-red-900 rounded-2xl cursor-pointer">
                 <img
-                  src="/OIP.webp"
+                  src="/5205389a898cb0a809ed71ccdb63f449.jpg"
                   alt="Playlist 1 "
-                  className="h-40 w-30 rounded-[50%] hover:scale-105"
+                  className="h-40 w-30 rounded-[100%] hover:scale-105"
                 />
                 <p className="font-bold text-center">Golden Days</p>
                 <p className="text-center">Favaroite</p>
@@ -216,7 +216,7 @@ function ExplorePage() {
             >
               <div className="mt-5 p-5 bg-linear-140 from-blue-500 to-violet-800 rounded-2xl cursor-pointer">
                 <img
-                  src="/1200x1200bf-60.jpg"
+                  src="/download (1).jpg"
                   alt="Playlist 2"
                   className="h-40 w-30 rounded-[50%] hover:scale-105"
                 />
@@ -234,7 +234,7 @@ function ExplorePage() {
             >
               <div className="mt-5 p-5 bg-linear-160 from-slate-700 to-blue-800 rounded-2xl cursor-pointer">
                 <img
-                  src="/1200x1200bf-60 (1).jpg"
+                  src="/One-Direction.jpg"
                   alt="Playlist 1 "
                   className="h-40 w-30 rounded-[50%] hover:scale-105"
                 />
@@ -252,7 +252,7 @@ function ExplorePage() {
             >
               <div className="mt-5 p-5 bg-linear-160 from-green-700 to-cyan-500 rounded-2xl cursor-pointer">
                 <img
-                  src="/OIP (1).webp"
+                  src="/71BKjYZejTL._SL1232_.jpg"
                   alt="Playlist 1 "
                   className="h-40 w-30 rounded-[50%] hover:scale-105"
                 />

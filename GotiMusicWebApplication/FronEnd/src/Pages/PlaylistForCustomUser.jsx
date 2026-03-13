@@ -8,6 +8,7 @@ import { TbMusicDollar } from "react-icons/tb";
 import { MdPlaylistAddCheck } from "react-icons/md";
 import { FaRegPlayCircle } from "react-icons/fa";
 import { MdCloseFullscreen } from "react-icons/md";
+import { CgPlayListAdd } from "react-icons/cg";
 function PlaylistForCustomUser() {
   const [isPlaylistCreated, setisPlaylistCreated] = useState(false);
   const [SavedSongDetails, setSavedSongDetails] = useState([]);
@@ -16,6 +17,8 @@ function PlaylistForCustomUser() {
   const [ShowAudioTag, setShowAudioTag] = useState(false); // This is the react variable for the display of the audio tag
   const [SongAudioDisplay, setSongAudioDisplay] = useState([]);
   const [SongId, setSongId] = useState();
+  const [ShowPlaylist, setShowPlaylist] = useState([]);
+  const [ShowPlaylistTag, setShowPlaylistTag] = useState(false);
   async function handleOnClickToPlaySong(Song) {
     setSongToBePlayed(Song.SongDetailsInDataBase.downloadUrl[1].url);
     setShowAudioTag((prev) => !prev);
@@ -40,7 +43,7 @@ function PlaylistForCustomUser() {
     const MusicDetails = async () => {
       try {
         const response = await fetch(
-          "http://localhost:8001/user/customplaylistdetails",
+          "https://resonify-3backend.onrender.com/user/customplaylistdetails",
           {
             method: "GET",
           },
@@ -148,10 +151,10 @@ function PlaylistForCustomUser() {
                         <img
                           src={SavedSong.SongDetailsInDataBase.image[2].url}
                           alt="Photo of the Ablum"
-                          className="h-20 rounded-full relative group-hover:brightness-70"
+                          className="h-20 rounded-full relative group-hover:brightness-20"
                         />
                         <FaRegPlayCircle
-                          className="absolute -mt-13 ml-6 opacity-0 group-hover:opacity-100 cursor-pointer"
+                          className="absolute -mt-13 ml-6 opacity-0 group-hover:opacity-100 cursor-pointer text-white"
                           size={30}
                           onClick={() => handleOnClickToPlaySong(SavedSong)}
                         />
@@ -208,13 +211,15 @@ function PlaylistForCustomUser() {
                                 loop
                                 src={SongToBePlayed}
                               />
-                              <MdCloseFullscreen
-                                size={30}
-                                className="-ml-5 hover:text-red-400 cursor-pointer"
-                                onClick={() => {
-                                  handleClick();
-                                }}
-                              />
+                              <div className="flex flex-col">
+                                <MdCloseFullscreen
+                                  size={30}
+                                  className="-ml-7 hover:text-red-400 mt-5 cursor-pointer"
+                                  onClick={() => {
+                                    handleClick();
+                                  }}
+                                />
+                              </div>
                             </div>
                           </div>
                         )}
